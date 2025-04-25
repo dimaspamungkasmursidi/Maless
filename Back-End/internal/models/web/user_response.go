@@ -1,0 +1,9 @@
+package web
+
+type UserResponse struct {
+	ID        int    `json:"id"`
+	GoogleId  string `json:"google_id"`
+	Name      string `json:"name"`
+	Email     string `json:"email"`
+	AvatarUrl string `json:"avatar_url"`
+}

@@ -1,4 +1,4 @@
-package api
+package db
 
 import (
 	"context"
@@ -11,7 +11,6 @@ func TestConnectToDB(t *testing.T) {
 	if con == nil {
 		t.Fatal("Gagal koneksi ke database, koneksi nil")
 	}
-	defer con.Close(context.Background())
 
 	var result int
 	err := con.QueryRow(context.Background(), "SELECT 1").Scan(&result)
