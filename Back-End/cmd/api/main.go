@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 	"time"
 
@@ -8,6 +9,7 @@ import (
 	"github.com/Bobby-P-dev/todo-listgo.git/internal/handlers"
 	"github.com/Bobby-P-dev/todo-listgo.git/internal/helpers"
 	"github.com/Bobby-P-dev/todo-listgo.git/internal/middlewares"
+	"github.com/Bobby-P-dev/todo-listgo.git/internal/oauth"
 	"github.com/Bobby-P-dev/todo-listgo.git/internal/repository"
 	"github.com/Bobby-P-dev/todo-listgo.git/internal/routers"
 	"github.com/Bobby-P-dev/todo-listgo.git/internal/services"
@@ -19,6 +21,9 @@ func init() {
 
 func main() {
 	helpers.LoadEnv()
+	if err := oauth.InitOAuthConfig("http://localhost:8081/oauth/callback"); err != nil {
+		log.Fatalf("Failed to initialize OAuth config: %v", err)
+	}
 	db := db.ConnectToDB()
 	UserRepo := repository.NewUserRepoImpl(db)
 	middleware := middlewares.NewAuthMiddleware(UserRepo)

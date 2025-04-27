@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   postgres:
     image: postgres:latest
@@ -10,4 +12,17 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: todo
+    restart: always
+
+  golang-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: golang-app
+    ports:
+      - "8081:8081"
+    environment:
+      - DBURL=postgres://postgres:postgres@postgres:5432/todo?sslmode=disable
+    depends_on:
+      - postgres
     restart: always

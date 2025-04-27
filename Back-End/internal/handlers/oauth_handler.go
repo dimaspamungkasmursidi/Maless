@@ -9,5 +9,5 @@ import (
 type OauthHandlers interface {
 	HandleGoogleLogin(c *gin.Context)
 	HandleGoogleCallback(c *gin.Context)
-	GetUserInfo(token *oauth2.Token) (map[string]interface{}, *helpers.CustomError)
+	GetUserInfo(*oauth2.Token) (map[string]interface{}, *helpers.CustomError)
 }
