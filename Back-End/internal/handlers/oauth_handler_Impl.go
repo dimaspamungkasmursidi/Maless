@@ -75,7 +75,7 @@ func (h *OauthHandlersImpl) HandleGoogleCallback(c *gin.Context) {
 		return
 	}
 
-	c.Redirect(http.StatusFound, "http://localhost:3000")
+	c.Redirect(http.StatusFound, "http://localhost:3000/dashboard")
 }
 
 func (h *OauthHandlersImpl) GetUserInfo(token *oauth2.Token) (map[string]interface{}, *helpers.CustomError) {
